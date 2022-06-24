@@ -4,125 +4,242 @@
     ViewData["Title"] = "Bowling page";
 }
 
-<style>
-    .col {
-        border: .5px solid;
-        border-color: lightgrey;
-        height: 180px;
-        padding: 20px;
-    }
 
-    .col-1 {
-        border-right: .5px solid;
-        border-color: lightgrey;
-        height: 50px;
-        width: 50px;
-        align-content: center;
-        font-size: 30px;
-        font-weight: 100;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+        .col {
+            border: .5px solid;
+            border-color: lightgrey;
+            height: 180px;
+            padding: 20px;
+        }
 
-    .col-2 {
-        border-left: .5px solid;
-        border-color: lightgrey;
-        height: 50px;
-        width: 50px;
-        align-content: center;
-        font-size: 30px;
-        font-weight: 100;
-    }
+        .col-1 {
+            border-right: 1px solid;
+            font-size: 30px;
+            height: 50px;
+        }
 
-    p{
-        margin-top: -10px;
-    }
+        .col-2 {
+            border-left: 1px solid;
+            font-size: 30px;
+            height: 50px;
+        }
 
-</style>
-<div class="text-center">
-    <br />
-    <h1 class="display-6">Scoreboard</h1>
-    <div class="container">
+        p {
+            margin-top: -10px;
+        }
+
+        .p2 {
+            margin-left: -7px;
+            margin-top: 2px;
+        }
+
+        .row {
+            justify-content: center;
+        }
+
+    </style>
+
+    <div class="text-center">
         <br />
-        <div class="row">
-            <div class="col">
-                <p>Frame 1</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f1-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f1-score-2" style="margin-top:3px;">0</h2></div>
+        <h1 class="display-6">Scoreboard</h1>
+        <div class="container container-fluid">
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p class="p1">Frame 1</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f1-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f1-score-2">0</p></div>
+                    </div>
+                    <h1 id="f1-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
-                <h1 id="f1-final-score" style="margin-top:6px;"><u>9</u></h1>
+                <div class="col">
+                    <p>Frame 2</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f2-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f2-score-2">0</p></div>
+                    </div>
+                    <h1 id="f2-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 3</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f3-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f3-score-2">0</p></div>
+                    </div>
+                    <h1 id="f3-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 4</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f4-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f4-score-2">0</p></div>
+                    </div>
+                    <h1 id="f4-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 5</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f5-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f5-score-2">0</p></div>
+                    </div>
+                    <h1 id="f5-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 6</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f6-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f6-score-2">0</p></div>
+                    </div>
+                    <h1 id="f6-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 7</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f7-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f7-score-2">0</p></div>
+                    </div>
+                    <h1 id="f7-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 8</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f8-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f8-score-2">0</p></div>
+                    </div>
+                    <h1 id="f7-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 9</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f9-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f9-score-2">0</p></div>
+                    </div>
+                    <h1 id="f9-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
+                <div class="col">
+                    <p>Frame 10</p>
+                    <div class="row">
+                        <div class="col-1"><p class="p2" id="f10-score-1">0</p></div>
+                        <div class="col-2"><p class="p2" id="f10-score-2">0</p></div>
+                    </div>
+                    <h1 id="f10-final-score" style="margin-top:6px;"><u>0</u></h1>
+                </div>
             </div>
-            <div class="col">
-                <p>Frame 2</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f2-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f2-score-2" style="margin-top:3px;">0</h2></div>
+        </div>
+        <br />
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#swingModal" onclick="resetSwingButtons()">
+            Swing!
+        </button>
+
+        <div class="modal fade" id="swingModal" tabindex="-1" role="dialog" aria-labelledby="swingModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="swingModalTitle">First Shot</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h1 id="pins-down">Hit it!</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn-hit-1" class="btn btn-primary btn-lg btn-block" onclick="firstRoll()">Go!</button>
+                        <button type="button" id="btn-next" class="btn btn-dark btn-lg btn-block" onclick="nextShot()">Proceed to next shot.</button>
+                        <button type="button" id="btn-hit-2" class="btn btn-success btn-lg btn-block" onclick="secondRoll()">Go!</button>
+                        <button type="button" id="btn-close" class="btn btn-danger btn-lg btn-block"  data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <h1 id="f2-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 3</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f3-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f3-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f3-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 4</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f4-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f4-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f4-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 5</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f5-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f5-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f5-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 6</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f6-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f6-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f6-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 7</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f7-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f7-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f7-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 8</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f8-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f8-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f7-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 9</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f9-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f9-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f9-final-score" style="margin-top:6px;"><u>9</u></h1>
-            </div>
-            <div class="col">
-                <p>Frame 10</p>
-                <div class="row justify-content-center">
-                    <div class="col-1"><h2 id="f10-score-1" style="margin-top:3px;">9</h2></div>
-                    <div class="col-2"><h2 id="f10-score-2" style="margin-top:3px;">0</h2></div>
-                </div>
-                <h1 id="f10-final-score" style="margin-top:6px;"><u>9</u></h1>
             </div>
         </div>
     </div>
-</div>
+
+</body>
+</html>
+
+@section Scripts {
+    <script>
+        document.getElementById("btn-next").style.display = "none";
+        document.getElementById("btn-hit-2").style.display = "none";
+        document.getElementById("btn-close").style.display = "none";
+
+        let shot = 1;
+        function roll() {
+            let x = 0;
+            x = Math.floor((Math.random() * 10) + 1);
+            let rollingColor = (shot == 1) ? "blue" : "green";
+
+            for (let i = 1; i <= x; i++) {
+                setTimeout(function timer() {
+                    document.getElementById("pins-down").innerHTML = i;
+                    document.getElementById("pins-down").style.color = rollingColor;
+
+                    if (i == x) {
+                        document.getElementById("pins-down").innerHTML = "You got " + i + " pins down!";
+                        document.getElementById("pins-down").style.color = "black";
+
+                        if (i == 1) {
+                            document.getElementById("pins-down").innerHTML = "You got " + i + " pin down!";
+                        }
+                    }
+
+                    if (i == 10) {
+                        let label = "";
+                        label = (shot > 1) ? "Wow! That's a Spare!" : "Amazing! That's a Strike!"; 
+                        document.getElementById("pins-down").innerHTML = label;
+                        document.getElementById("pins-down").style.color = "black";
+                    }
+
+                }, i * 50);
+            }
+        }
+
+        function firstRoll() {
+            shot = 1;
+            document.getElementById("btn-hit-1").style.display = "none";
+            roll();
+            document.getElementById("btn-next").style.display = "block";
+            
+            //send api here
+        }
+
+        function secondRoll() {
+            shot = 2;
+            roll();
+            //send api here
+            //refresh here..
+            document.getElementById("btn-close").style.display = "block";
+            document.getElementById("btn-hit-2").style.display = "none";
+        }
+
+        function resetSwingButtons() {
+            shot = 1;
+            document.getElementById("pins-down").innerHTML = 0;
+            document.getElementById("swingModalTitle").innerHTML = "First Shot";
+            document.getElementById("btn-hit-1").style.display = "block";
+            document.getElementById("btn-next").style.display = "none";
+            document.getElementById("btn-hit-2").style.display = "none";
+            document.getElementById("btn-close").style.display = "none";
+        }
+
+        function nextShot() {
+            document.getElementById("swingModalTitle").innerHTML = "Second Shot";
+            document.getElementById("pins-down").innerHTML = 0;
+            document.getElementById("btn-next").style.display = "none";
+            document.getElementById("btn-hit-2").style.display = "block";
+        }
+
+    </script>
+}
