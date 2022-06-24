@@ -51,6 +51,19 @@
 
     <div class="text-center">
         <br />
+        <div class="row">
+            <button id="btn0" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="No pins knocked down" onclick="hS(0);" value="0" style="display: inline;">0</button>
+            <button id="btn1" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="1 pin knocked down" onclick="hS(1);" value="1" style="display: inline;">1</button>
+            <button id="btn2" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="2 pins knocked down" onclick="hS(2);" value="2" style="display: inline;">2</button>
+            <button id="btn3" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="3 pins knocked down" onclick="hS(3);" value="3" style="display: inline;">3</button>
+            <button id="btn4" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="4 pins knocked down" onclick="hS(4);" value="4" style="display: inline;">4</button>
+            <button id="btn5" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="5 pins knocked down" onclick="hS(5);" value="5" style="display: inline;">5</button>
+            <button id="btn6" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="6 pins knocked down" onclick="hS(6);" value="6" style="display: inline;">6</button>
+            <button id="btn7" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="7 pins knocked down" onclick="hS(7);" value="7" style="display: inline;">7</button>
+            <button id="btn8" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="8 pins knocked down" onclick="hS(8);" value="8" style="display: inline;">8</button>
+            <button id="btn9" type="button" class="btn btn-default mr-1" data-toggle="tooltip" data-placement="bottom" title="9 pins knocked down" onclick="hS(9);" value="9" style="display: inline;">9</button>
+            <button id="btn10" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="10 pins knocked down" onclick="hS(10);" value="10" style="display: inline;">10</button>
+        </div>
         <h1 class="display-6">Scoreboard</h1>
         <div class="container container-fluid">
             <br />
@@ -58,118 +71,86 @@
                 <div class="col">
                     <p class="p1">Frame 1</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f1-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f1-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f1-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f1-score-2">-</p></div>
                     </div>
                     <h1 id="f1-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 2</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f2-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f2-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f2-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f2-score-2">-</p></div>
                     </div>
                     <h1 id="f2-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 3</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f3-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f3-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f3-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f3-score-2">-</p></div>
                     </div>
                     <h1 id="f3-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 4</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f4-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f4-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f4-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f4-score-2">-</p></div>
                     </div>
                     <h1 id="f4-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 5</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f5-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f5-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f5-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f5-score-2">-</p></div>
                     </div>
                     <h1 id="f5-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 6</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f6-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f6-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f6-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f6-score-2">-</p></div>
                     </div>
                     <h1 id="f6-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 7</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f7-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f7-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f7-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f7-score-2">-</p></div>
                     </div>
                     <h1 id="f7-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 8</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f8-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f8-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f8-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f8-score-2">-</p></div>
                     </div>
                     <h1 id="f7-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 9</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f9-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f9-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f9-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f9-score-2">-</p></div>
                     </div>
                     <h1 id="f9-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
                 <div class="col">
                     <p>Frame 10</p>
                     <div class="row">
-                        <div class="col-1"><p class="p2" id="f10-score-1">0</p></div>
-                        <div class="col-2"><p class="p2" id="f10-score-2">0</p></div>
+                        <div class="col-1"><p class="p2" id="f10-score-1">-</p></div>
+                        <div class="col-2"><p class="p2" id="f10-score-2">-</p></div>
                     </div>
                     <h1 id="f10-final-score" style="margin-top:6px;"><u>0</u></h1>
                 </div>
             </div>
         </div>
         <br />
-
-        <div class="row">
-            <button type="button" style="width:40%" class="btn btn-lg btn-primary mr-2" data-toggle="modal" data-target="#swingModal" onclick="swingAsRookie()">
-                Swing like a rookie!
-            </button>
-            <button type="button" style="width:40%" class="btn btn-lg btn-success ml-2" data-toggle="modal" data-target="#swingModal" onclick="swingAsPro()">
-                Swing like a pro!
-            </button>
-        </div>
-      
-
-        <div class="modal fade" id="swingModal" tabindex="-1" role="dialog" aria-labelledby="swingModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="swingModalTitle">First Shot</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h1 id="pins-down">Hit it!</h1>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btn-hit-1" class="btn btn-primary btn-lg btn-block" onclick="firstRoll()">Go!</button>
-                        <button type="button" id="btn-next" class="btn btn-dark btn-lg btn-block" onclick="nextShot()">Proceed to next shot.</button>
-                        <button type="button" id="btn-hit-2" class="btn btn-success btn-lg btn-block" onclick="secondRoll()">Go!</button>
-                        <button type="button" id="btn-close" class="btn btn-danger btn-lg btn-block"  data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 </body>
@@ -177,96 +158,83 @@
 
 @section Scripts {
     <script>
-        document.getElementById("btn-next").style.display = "none";
-        document.getElementById("btn-hit-2").style.display = "none";
-        document.getElementById("btn-close").style.display = "none";
+        let firstHit = 0;
+        let secondHit = 0;
 
-        let shot = 1;
-        let isLikeAPro = true;
+        let frame = 1;
+        let hit = 1;
 
-        function roll() {
-            console.log(isLikeAPro);
-            let x = 0;
-            if (isLikeAPro == true) {
-                x = Math.floor((Math.random() * 10) + 5);
+        let isSpare = false;
+
+        function hS(pins) {
+            if (hit == 1) {
+                firstHit = pins;
+                hit = 2;
+                if (pins == 10) {
+                    hit = 1;
+                    document.getElementById("f" + frame + "-score-2").innerHTML = "X";
+                    showAll();
+                    frame++;
+                }
+                else { 
+                    document.getElementById("f" + frame + "-score-1").innerHTML = pins;
+                }
+
+                if (isSpare){
+                    console.log("dumman dito");
+                    console.log(isSpare);
+                    getSpareScore(firstHit);
+                    isSpare = false;
+                }
+
             }
-            else{
-                 x = Math.floor((Math.random() * 10) + 0);
+            else if (hit == 2) {
+                secondHit = pins;
+                hit = 1;
+                document.getElementById("f" + frame + "-score-2").innerHTML = pins;
+
+                isSpare = (firstHit + secondHit == 10);
+                if (isSpare) {
+                    document.getElementById("f" + frame + "-score-2").innerHTML = "/";
+                    //score = previous score + 10 + next score;
+                }
+
+                frame++;
             }
-            let rollingColor = (shot == 1) ? "blue" : "green";
-            console.log(x);
-            for (let i = 0; i <= x; i++) {
-                setTimeout(function timer() {
-                    document.getElementById("pins-down").innerHTML = i;
-                    document.getElementById("pins-down").style.color = rollingColor;
 
-                    if (i == x) {
-                        document.getElementById("pins-down").innerHTML = "You got " + i + " pins down!";
-                        document.getElementById("pins-down").style.color = "black";
+            hideAll();
+            let rP = (10 - pins);
+            setPins(rP);
 
-                        if (i == 1) {
-                            document.getElementById("pins-down").innerHTML = "You got " + i + " pin down!";
-                        }
-                        else if (i == 0) {
-                            document.getElementById("pins-down").innerHTML = ":( \n Ooops! You got 0.";
-                        }
-                    }
+            if (hit == 1) {
+                showAll();
+            }
 
-                    if (i >= 10) {
-                        let label = "";
-                        label = (shot > 1) ? "Wow! That's a Spare!" : "Amazing! That's a Strike!"; 
-                        document.getElementById("pins-down").innerHTML = label;
-                        document.getElementById("pins-down").style.color = "black";
-                    }
 
-                }, i * 50);
+        }
+
+        function hideAll() {
+            for (let i = 0; i <= 10; i++) {
+                document.getElementById("btn" + i).style.display = "none";
             }
         }
 
-        function firstRoll() {
-            shot = 1;
-            document.getElementById("btn-hit-1").style.display = "none";
-            roll();
-            document.getElementById("btn-next").style.display = "block";
-            
-            //send api here
+        function showAll() {
+            for (let i = 0; i <= 10; i++) {
+                document.getElementById("btn" + i).style.display = "block";
+            }
         }
 
-        function secondRoll() {
-            shot = 2;
-            roll();
-            //send api here
-            //refresh here..
-            document.getElementById("btn-close").style.display = "block";
-            document.getElementById("btn-hit-2").style.display = "none";
+        function setPins(rP) {
+            for (let i = 0; i <= rP; i++) {
+                document.getElementById("btn" + i).style.display = "block";
+            }
         }
 
-        function resetSwingButtons() {
-            shot = 1;
-            document.getElementById("pins-down").innerHTML = 0;
-            document.getElementById("swingModalTitle").innerHTML = "First Shot";
-            document.getElementById("btn-hit-1").style.display = "block";
-            document.getElementById("btn-next").style.display = "none";
-            document.getElementById("btn-hit-2").style.display = "none";
-            document.getElementById("btn-close").style.display = "none";
+        function getSpareScore(nextScore) {
+            let spareScore = (10 + nextScore);
+            let elem = "f" + (frame - 1) + "-final-score";
+            document.getElementById(elem).innerHTML = spareScore;
         }
-
-        function nextShot() {
-            document.getElementById("swingModalTitle").innerHTML = "Second Shot";
-            document.getElementById("pins-down").innerHTML = 0;
-            document.getElementById("btn-next").style.display = "none";
-            document.getElementById("btn-hit-2").style.display = "block";
-        }
-
-        function swingAsRookie() {
-            resetSwingButtons();
-            isLikeAPro = false;
-        }
-
-        function swingAsPro(){
-            resetSwingButtons();
-            isLikeAPro = true;
-        }
-
     </script>
 }
