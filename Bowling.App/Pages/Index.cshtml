@@ -1,10 +1,128 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Bowling page";
 }
 
+<style>
+    .col {
+        border: .5px solid;
+        border-color: lightgrey;
+        height: 180px;
+        padding: 20px;
+    }
+
+    .col-1 {
+        border-right: .5px solid;
+        border-color: lightgrey;
+        height: 50px;
+        width: 50px;
+        align-content: center;
+        font-size: 30px;
+        font-weight: 100;
+    }
+
+    .col-2 {
+        border-left: .5px solid;
+        border-color: lightgrey;
+        height: 50px;
+        width: 50px;
+        align-content: center;
+        font-size: 30px;
+        font-weight: 100;
+    }
+
+    p{
+        margin-top: -10px;
+    }
+
+</style>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <br />
+    <h1 class="display-6">Scoreboard</h1>
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col">
+                <p>Frame 1</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f1-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f1-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f1-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 2</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f2-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f2-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f2-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 3</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f3-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f3-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f3-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 4</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f4-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f4-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f4-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 5</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f5-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f5-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f5-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 6</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f6-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f6-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f6-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 7</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f7-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f7-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f7-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 8</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f8-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f8-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f7-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 9</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f9-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f9-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f9-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+            <div class="col">
+                <p>Frame 10</p>
+                <div class="row justify-content-center">
+                    <div class="col-1"><h2 id="f10-score-1" style="margin-top:3px;">9</h2></div>
+                    <div class="col-2"><h2 id="f10-score-2" style="margin-top:3px;">0</h2></div>
+                </div>
+                <h1 id="f10-final-score" style="margin-top:6px;"><u>9</u></h1>
+            </div>
+        </div>
+    </div>
 </div>
