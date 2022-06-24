@@ -139,9 +139,15 @@
         </div>
         <br />
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#swingModal" onclick="resetSwingButtons()">
-            Swing!
-        </button>
+        <div class="row">
+            <button type="button" style="width:40%" class="btn btn-lg btn-primary mr-2" data-toggle="modal" data-target="#swingModal" onclick="swingAsRookie()">
+                Swing like a rookie!
+            </button>
+            <button type="button" style="width:40%" class="btn btn-lg btn-success ml-2" data-toggle="modal" data-target="#swingModal" onclick="swingAsPro()">
+                Swing like a pro!
+            </button>
+        </div>
+      
 
         <div class="modal fade" id="swingModal" tabindex="-1" role="dialog" aria-labelledby="swingModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -176,12 +182,20 @@
         document.getElementById("btn-close").style.display = "none";
 
         let shot = 1;
-        function roll() {
-            let x = 0;
-            x = Math.floor((Math.random() * 10) + 1);
-            let rollingColor = (shot == 1) ? "blue" : "green";
+        let isLikeAPro = true;
 
-            for (let i = 1; i <= x; i++) {
+        function roll() {
+            console.log(isLikeAPro);
+            let x = 0;
+            if (isLikeAPro == true) {
+                x = Math.floor((Math.random() * 10) + 5);
+            }
+            else{
+                 x = Math.floor((Math.random() * 10) + 0);
+            }
+            let rollingColor = (shot == 1) ? "blue" : "green";
+            console.log(x);
+            for (let i = 0; i <= x; i++) {
                 setTimeout(function timer() {
                     document.getElementById("pins-down").innerHTML = i;
                     document.getElementById("pins-down").style.color = rollingColor;
@@ -193,9 +207,12 @@
                         if (i == 1) {
                             document.getElementById("pins-down").innerHTML = "You got " + i + " pin down!";
                         }
+                        else if (i == 0) {
+                            document.getElementById("pins-down").innerHTML = ":( \n Ooops! You got 0.";
+                        }
                     }
 
-                    if (i == 10) {
+                    if (i >= 10) {
                         let label = "";
                         label = (shot > 1) ? "Wow! That's a Spare!" : "Amazing! That's a Strike!"; 
                         document.getElementById("pins-down").innerHTML = label;
@@ -239,6 +256,16 @@
             document.getElementById("pins-down").innerHTML = 0;
             document.getElementById("btn-next").style.display = "none";
             document.getElementById("btn-hit-2").style.display = "block";
+        }
+
+        function swingAsRookie() {
+            resetSwingButtons();
+            isLikeAPro = false;
+        }
+
+        function swingAsPro(){
+            resetSwingButtons();
+            isLikeAPro = true;
         }
 
     </script>
