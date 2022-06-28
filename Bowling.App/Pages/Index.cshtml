@@ -4,7 +4,6 @@
     ViewData["Title"] = "Bowling page";
 }
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +50,12 @@
 
         .row {
             justify-content: center;
+        }
+
+        #btn-new {
+            position: absolute;
+            bottom: 0;
+            right: 0;
         }
 
         #btn-pins {
@@ -148,31 +153,40 @@
     </style>
 
     <div class="text-center">
-        <br />
-        <div class="row" id="btn-pins">
-            <button id="btn0" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="No pins knocked down" onclick="pinsDown(0);" value="0" style="display: inline;">0 </button>
-            <button id="btn1" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="1 pin knocked down" onclick="pinsDown(1);" value="1" style="display: inline;"> 1 </button>
-            <button id="btn2" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="2 pins knocked down" onclick="pinsDown(2);" value="2" style="display: inline;">2</button>
-            <button id="btn3" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="3 pins knocked down" onclick="pinsDown(3);" value="3" style="display: inline;">3</button>
-            <button id="btn4" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="4 pins knocked down" onclick="pinsDown(4);" value="4" style="display: inline;">4</button>
-            <button id="btn5" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="5 pins knocked down" onclick="pinsDown(5);" value="5" style="display: inline;">5</button>
-            <button id="btn6" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="6 pins knocked down" onclick="pinsDown(6);" value="6" style="display: inline;">6</button>
-            <button id="btn7" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="7 pins knocked down" onclick="pinsDown(7);" value="7" style="display: inline;">7</button>
-            <button id="btn8" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="8 pins knocked down" onclick="pinsDown(8);" value="8" style="display: inline;">8</button>
-            <button id="btn9" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="9 pins knocked down" onclick="pinsDown(9);" value="9" style="display: inline;">9</button>
-            <button id="btn10" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="10 pins knocked down" onclick="pinsDown(10);" value="10" style="display: inline;">10</button>
-        </div>
-
-        <div class="container container-fluid">
-            <br />
+        <div class="container">
             <div class="row">
+                <div class="col-lg-9">
+                    <div class="row" id="btn-pins">
+                        <button id="btn0" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="No pins knocked down" onclick="pinsDown(0);" value="0" style="display: inline;">0 </button>
+                        <button id="btn1" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="1 pin knocked down" onclick="pinsDown(1);" value="1" style="display: inline;"> 1 </button>
+                        <button id="btn2" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="2 pins knocked down" onclick="pinsDown(2);" value="2" style="display: inline;">2</button>
+                        <button id="btn3" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="3 pins knocked down" onclick="pinsDown(3);" value="3" style="display: inline;">3</button>
+                        <button id="btn4" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="4 pins knocked down" onclick="pinsDown(4);" value="4" style="display: inline;">4</button>
+                        <button id="btn5" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="5 pins knocked down" onclick="pinsDown(5);" value="5" style="display: inline;">5</button>
+                        <button id="btn6" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="6 pins knocked down" onclick="pinsDown(6);" value="6" style="display: inline;">6</button>
+                        <button id="btn7" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="7 pins knocked down" onclick="pinsDown(7);" value="7" style="display: inline;">7</button>
+                        <button id="btn8" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="8 pins knocked down" onclick="pinsDown(8);" value="8" style="display: inline;">8</button>
+                        <button id="btn9" type="button" class="btn btn-secondary mr-1 btn-lg" data-toggle="tooltip" data-placement="bottom" title="9 pins knocked down" onclick="pinsDown(9);" value="9" style="display: inline;">9</button>
+                        <button id="btn10" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="10 pins knocked down" onclick="pinsDown(10);" value="10" style="display: inline;">10</button>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="row" id="btn-new">
+                        <button type="button" class="btn btn-success btn-md btn-lg" onclick="createNewGame();">New Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="container" id="ctn-frames" style="overflow:scroll; height:550px;">
+            <div class="row" id="r-frame-1">
                 <div class="col">
                     <p class="p1">Frame 1</p>
                     <div class="row">
                         <div class="col-1"><p class="p2" id="f1-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f1-score-2">-</p></div>
                     </div>
-                    <h1 id="f1-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f1-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 2</p>
@@ -180,7 +194,7 @@
                         <div class="col-1"><p class="p2" id="f2-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f2-score-2">-</p></div>
                     </div>
-                    <h1 id="f2-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f2-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 3</p>
@@ -188,7 +202,7 @@
                         <div class="col-1"><p class="p2" id="f3-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f3-score-2">-</p></div>
                     </div>
-                    <h1 id="f3-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f3-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 4</p>
@@ -196,7 +210,7 @@
                         <div class="col-1"><p class="p2" id="f4-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f4-score-2">-</p></div>
                     </div>
-                    <h1 id="f4-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f4-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 5</p>
@@ -204,7 +218,7 @@
                         <div class="col-1"><p class="p2" id="f5-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f5-score-2">-</p></div>
                     </div>
-                    <h1 id="f5-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f5-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 6</p>
@@ -212,7 +226,7 @@
                         <div class="col-1"><p class="p2" id="f6-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f6-score-2">-</p></div>
                     </div>
-                    <h1 id="f6-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f6-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 7</p>
@@ -220,7 +234,7 @@
                         <div class="col-1"><p class="p2" id="f7-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f7-score-2">-</p></div>
                     </div>
-                    <h1 id="f7-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f7-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 8</p>
@@ -228,7 +242,7 @@
                         <div class="col-1"><p class="p2" id="f8-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f8-score-2">-</p></div>
                     </div>
-                    <h1 id="f8-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f8-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 9</p>
@@ -236,7 +250,7 @@
                         <div class="col-1"><p class="p2" id="f9-score-1">-</p></div>
                         <div class="col-2"><p class="p2" id="f9-score-2">-</p></div>
                     </div>
-                    <h1 id="f9-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f9-final-score" style="margin-top:6px;">-</h1>
                 </div>
                 <div class="col">
                     <p>Frame 10</p>
@@ -245,37 +259,79 @@
                         <div class="col-2"><p class="p2" id="f10-score-2">-</p></div>
                         <div class="col-3"><p class="p2" id="f10-score-3">-</p></div>
                     </div>
-                    <h1 id="f10-final-score" style="margin-top:6px;">-</h1>
+                    <h1 class="final" id="f10-final-score" style="margin-top:6px;">-</h1>
                 </div>
             </div>
+
         </div>
-        <br />
     </div>
 </body>
 </html>
 
 @section Scripts {
     <script>
-        let mainShotIndex = 0;
 
+        let frameIndex = 1;
+
+        function createNewGame() {
+            frameIndex++;
+            console.log(frameIndex);
+            const div = document.getElementById('r-frame-1');
+            const clone = div.cloneNode(true);
+            clone.id = "r-frame-" + frameIndex;
+            document.getElementById('ctn-frames').appendChild(clone);
+
+            clearElements();
+
+            isEndGame = false;
+            resetGame()
+        }
+
+        function clearElements() {
+            let newFrameParent = document.getElementById("r-frame-" + frameIndex);
+            let newFrameChildrenScore = newFrameParent.querySelectorAll(".p2");
+            for (let i = 0; i < newFrameChildrenScore.length; i++) {
+                newFrameChildrenScore[i].innerHTML = "-";
+            }
+
+            let newFrameChildrenFinalScore = newFrameParent.querySelectorAll(".final");
+            for (let i = 0; i < newFrameChildrenFinalScore.length; i++) {
+                newFrameChildrenFinalScore[i].innerHTML = "-";
+            }
+        }
+
+        function resetGame() {
+            mainShotIndex = 0;
+            firstShot = 0;
+            secondShot = 0;
+            frame = 1;
+            shotIndex = 1;
+            strikeIndex = 0;
+            wasStrike = false;
+            isStrike = false;
+            isSpare = false;
+            wasSpare = false;
+            previousScore = 0;
+            showAll();
+        }
+
+        let mainShotIndex = 0;
         let firstShot = 0;
         let secondShot = 0;
-
         let frame = 1;
         let shotIndex = 1;
-
         let strikeIndex = 0;
         let wasStrike = false;
         let isStrike = false;
-
         let isSpare = false;
         let wasSpare = false;
-
         let previousScore = 0;
-
         let isEndGame = false;
 
+
         function pinsDown(pins) {
+            if (isEndGame) return;
+            let frameParent = document.getElementById("r-frame-" + frameIndex);
             mainShotIndex++;
 
             if (frame == 10) {
@@ -292,7 +348,7 @@
                     isStrike = true;
                     wasStrike = true; //for strikes with normal shots.
                     shotIndex = 1;
-                    document.getElementById("f" + frame + "-score-2").innerHTML = "X";
+                    frameParent.querySelector("#f" + frame + "-score-2").innerHTML = "X"
                     showAll();
 
                     //spare and strike
@@ -333,14 +389,14 @@
                         getSpareScore(firstShot);
                     }
 
-                    document.getElementById("f" + frame + "-score-1").innerHTML = pins;
+                    frameParent.querySelector("#f" + frame + "-score-1").innerHTML = pins;
                 }
 
             }
             else if (shotIndex == 2) {
                 secondShot = pins;
                 shotIndex = 1;
-                document.getElementById("f" + frame + "-score-2").innerHTML = pins;
+                frameParent.querySelector("#f" + frame + "-score-2").innerHTML = pins;
 
                 if (mainShotIndex == 3) {
                     if (wasStrike) { //2nd shot of strikes with normal.
@@ -354,7 +410,8 @@
 
                 isSpare = (firstShot + secondShot == 10);
                 if (isSpare) {
-                    document.getElementById("f" + frame + "-score-2").innerHTML = "/";
+                    frameParent.querySelector("#f" + frame + "-score-2").innerHTML = "/";
+
                     mainShotIndex = 0;
                 }
                 else { //for 2nd shot normal.
@@ -396,29 +453,34 @@
         function getSpareScore(nextScore) {
             if (!isSpare) return;
             let spareScore = (previousScore + 10 + nextScore);
-            document.getElementById("f" + (frame - 1) + "-final-score").innerHTML = spareScore;
+            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            frameParent.querySelector("#f" + (frame - 1) + "-final-score").innerHTML = spareScore;
             previousScore = spareScore;
             isSpare = false;
         }
 
         function getNormalScore() {
             let normalScore = (previousScore + firstShot + secondShot);
-            document.getElementById("f" + (frame) + "-final-score").innerHTML = normalScore;
+            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            frameParent.querySelector("#f" + (frame) + "-final-score").innerHTML = normalScore;
             previousScore = normalScore;
         }
 
         function getStrikeScore(frameOffset) {
+
             if (!isStrike) return;
             let strikeScore = (previousScore + 10 + firstShot + secondShot);
-            document.getElementById("f" + (frame - frameOffset) + "-final-score").innerHTML = strikeScore;
+            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            frameParent.querySelector("#f" + (frame - frameOffset) + "-final-score").innerHTML = strikeScore;
             previousScore = strikeScore;
             isStrike = false;
         }
 
         function getAllStrikeScores() {
             if (strikeIndex > 2) {
+                let frameParent = document.getElementById("r-frame-" + frameIndex);
                 let allStrikeScore = (previousScore + 10 + firstShot + firstShot);
-                document.getElementById("f" + (frame - 3) + "-final-score").innerHTML = allStrikeScore;
+                frameParent.querySelector("#f" + (frame - 3) + "-final-score").innerHTML = allStrikeScore;
                 previousScore = allStrikeScore;
                 wasStrike = false;
             }
@@ -426,11 +488,11 @@
 
         function processLastFrame(pins) {
             if (isEndGame) return;
-
+            let frameParent = document.getElementById("r-frame-" + frameIndex);
             if (shotIndex == 1) {
                 firstShot = pins;
                 if (pins == 10) {
-                    document.getElementById("f" + frame + "-score-1").innerHTML = "X";
+                    frameParent.querySelector("#f" + frame + "-score-1").innerHTML = "X";
                     secondShot = 0;
                     isStrike = true;
                     wasStrike = true;
@@ -449,7 +511,7 @@
                     setPins(rP);
 
                     console.log(wasStrike);
-                    document.getElementById("f" + frame + "-score-1").innerHTML = pins;
+                    frameParent.querySelector("#f" + frame + "-score-1").innerHTML = pins;
                     if (wasStrike) {
                         console.log("else 10th frame.");
                         previousScore = previousScore + 10;
@@ -465,17 +527,17 @@
                     }
 
                 }
-               shotIndex = 2;
+                shotIndex = 2;
             }
             else if (shotIndex == 2) {
                 secondShot = pins;
                 if (pins == 10) {
                     isStrike = true;
                     wasStrike = true;
-                    document.getElementById("f" + frame + "-score-2").innerHTML = "X";
+                    frameParent.querySelector("#f" + frame + "-score-2").innerHTML = "X";
                     console.log("2nd mainshotIndex " + mainShotIndex);
 
-                    if (mainShotIndex == 3){
+                    if (mainShotIndex == 3) {
                         getStrikeScore(1);
 
                         mainShotIndex = 2;
@@ -484,7 +546,7 @@
                     shotIndex = 3;
                 }
                 else {
-                    document.getElementById("f" + frame + "-score-2").innerHTML = pins;
+                    frameParent.querySelector("#f" + frame + "-score-2").innerHTML = pins;
                     isSpare = (firstShot + secondShot == 10);
                     if (mainShotIndex == 3 && wasStrike) {
                         isStrike = true;
@@ -493,7 +555,8 @@
                         mainShotIndex = 2;
                     }
                     if (isSpare) {
-                        document.getElementById("f" + frame + "-score-2").innerHTML = "/";
+                        frameParent.querySelector("#f" + frame + "-score-2").innerHTML = "/";
+
                         showAll();
                         console.log("fhhefjaleijf");
                         mainShotIndex = 2;
@@ -510,7 +573,7 @@
                 if (pins == 10) {
                     isStrike = true;
                     wasStrike = true;
-                    document.getElementById("f" + frame + "-score-3").innerHTML = "X";
+                    frameParent.querySelector("#f" + frame + "-score-3").innerHTML = "X";
 
                     if (mainShotIndex == 3 && !isSpare) {
                         console.log("im here.");
@@ -521,62 +584,23 @@
                     }
 
                     if (isSpare) {
-                        console.log("pumasok ba dito?" + mainShotIndex);
+
                         getSpareScore(firstShot);
                     }
-                } 
+                }
                 else {
-                    document.getElementById("f" + frame + "-score-3").innerHTML = pins;
+                    frameParent.querySelector("#f" + frame + "-score-3").innerHTML = pins;
+                    console.log("pumasok ba dito?" + mainShotIndex);
                     if (isSpare) {
                         frame++;
                         getSpareScore(pins);
                     }
+
+                    isEndGame = true;
                 }
 
                 isEndGame = true;
             }
         }
-
-                            //if (pins == 10) {
-                            //    if (shotIndex == 1) {
-                            //        wasStrike = true;
-                            //        secondShot = 0;
-
-                            //        if (!wasSpare) {
-                            //            previousScore = previousScore + 10;
-                            //            getStrikeScore(2);
-                            //        }
-                            //        else {
-                            //            getStrikeScore(1);
-                            //        }
-
-                            //        shotIndex++;
-                            //    }
-                            //    else if (shotIndex == 2) {
-                            //        wasStrike = true;
-                            //        document.getElementById("f" + frame + "-score-2").innerHTML = "X";
-                            //        if (!wasSpare) {
-                            //            previousScore = previousScore + 10;
-                            //            getStrikeScore(1);
-                            //        }
-                            //        else {
-                            //            getStrikeScore(0);
-                            //        }
-                            //        shotIndex++;
-                            //    }
-                            //    else if (shotIndex == 3) {
-                            //        wasStrike = true;
-                            //        document.getElementById("f" + frame + "-score-3").innerHTML = "X";
-                            //        console.log(wasSpare);
-                            //        if (!wasSpare) {
-                            //            previousScore = previousScore + 10;
-                            //            getStrikeScore(0);
-                            //        }
-                            //        else {
-                            //            previousScore = previousScore - 10;
-                            //            getStrikeScore(0);
-                            //        }
-                            //        isEndGame = true;
-                            //    }
     </script>
 }
