@@ -9,10 +9,7 @@ namespace Business.Behaviors
          where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
-        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
-        {
-            _validators = validators;
-        }
+        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators) => _validators = validators;
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
@@ -27,7 +24,7 @@ namespace Business.Behaviors
             foreach (var error in failures)
                 errors.Add(string.IsNullOrEmpty(error.PropertyName) ? "Error" : error.PropertyName, error.ErrorMessage);
 
-            throw new ResponseException((int)HttpStatusCode.BadRequest, "Validation errors occurred", errors);
+            throw new ResponseException((HttpStatusCode)(int)HttpStatusCode.BadRequest, "Validation errors occurred", errors);
         }
     }
 }
