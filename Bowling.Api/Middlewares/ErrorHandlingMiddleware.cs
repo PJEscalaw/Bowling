@@ -9,10 +9,7 @@ namespace PriceData.WebApi.Middlewares
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public ErrorHandlingMiddleware(RequestDelegate next) => _next = next;
 
         public async Task Invoke(HttpContext context)
         {
@@ -26,9 +23,8 @@ namespace PriceData.WebApi.Middlewares
             }
         }
 
-        private string ReturnBadRequestResponse(ResponseException error)
-        {
-            var errorResponse = JsonSerializer.Serialize(new
+        private static string ReturnBadRequestResponse(ResponseException error) 
+            => JsonSerializer.Serialize(new
             {
                 error.StatusCode,
                 error.Succeeded,
@@ -36,9 +32,6 @@ namespace PriceData.WebApi.Middlewares
                 error.Errors,
                 error.Data
             });
-
-            return errorResponse;
-        }
 
 
         private static string ReturnInternalServerResponse(Exception error)
@@ -57,17 +50,15 @@ namespace PriceData.WebApi.Middlewares
 
             Log.Error(logError, "[SERVER ERROR]");
 
-            var errorResponse = JsonSerializer.Serialize(new
+            return JsonSerializer.Serialize(new
             {
                 StatusCode = (int)HttpStatusCode.InternalServerError,
                 Message = "The API has encountered an Internal Server Error. Please try again.",
                 ErrorDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")
             });
-
-            return errorResponse;
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception ex)
+        private static async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             context.Response.ContentType = "application/json";
 
