@@ -33,7 +33,6 @@ namespace PriceData.WebApi.Middlewares
                 error.Data
             });
 
-
         private static string ReturnInternalServerResponse(Exception error)
         {
             if (error is null)
