@@ -150,6 +150,11 @@
             height: 60px;
         }
 
+        #row-game-name {
+            background-color: darkgrey;
+            justify-content: left;
+        }
+
     </style>
 
     <div class="text-center">
@@ -172,97 +177,168 @@
                 </div>
                 <div class="col-sm">
                     <div class="row" id="btn-new">
-                        <button type="button" class="btn btn-success btn-md btn-lg" onclick="createNewGame();">New Game</button>
+                        <button type="button" class="btn btn-success btn-md btn-lg" data-toggle="modal" data-target="#newGameModalCenter">New Game</button>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="newGameModalCenter" tabindex="-1" role="dialog" aria-labelledby="newGameModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="newGameModalLongTitle">Create New Game</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input class="form-control" id="txt-game-name" type="text" placeholder="Enter game name here.">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="createNewGame();" data-dismiss="modal">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="editGameModalCenter" tabindex="-1" role="dialog" aria-labelledby="editGameModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editGameModalLongTitle">Edit Game</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input class="form-control" id="txt-edit-name" type="text" autocomplete="off"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="editGame();" data-dismiss="modal">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteGameModalCenter" tabindex="-1" role="dialog" aria-labelledby="deleteGameModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteGameModalLongTitle">Delete Game</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this game?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteGame();" data-dismiss="modal">Delete</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <br />
         <div class="container" id="ctn-frames" style="overflow:scroll; height:550px;">
-            <div class="row" id="r-frame-1">
-                <div class="col">
-                    <p class="p1">Frame 1</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f1-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f1-score-2">-</p></div>
+            <div class="container" id="r-frame-1">
+                <div class="row" id="row-game-name">
+                    <div class="col-lg-10">
+                        <h4 id="hdr-game-1">Game 1</h4>
                     </div>
-                    <h1 class="final" id="f1-final-score" style="margin-top:6px;">-</h1>
+                    <div class="col-sm">
+                        <button type="button" class="btn btn-info" id="btn-edit" data-toggle="modal" data-target="#editGameModalCenter" onclick="setEditGame();">Edit</button>
+                        <button type="button" class="btn btn-danger" id="btn-delete" data-toggle="modal" data-target="#deleteGameModalCenter">Delete</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <p>Frame 2</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f2-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f2-score-2">-</p></div>
+
+                <div class="row">
+                    <div class="col">
+                        <p class="p1">Frame 1</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f1-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f1-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f1-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f2-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 3</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f3-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f3-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 2</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f2-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f2-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f2-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f3-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 4</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f4-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f4-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 3</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f3-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f3-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f3-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f4-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 5</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f5-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f5-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 4</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f4-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f4-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f4-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f5-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 6</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f6-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f6-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 5</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f5-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f5-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f5-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f6-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 7</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f7-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f7-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 6</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f6-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f6-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f6-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f7-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 8</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f8-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f8-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 7</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f7-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f7-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f7-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f8-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 9</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f9-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f9-score-2">-</p></div>
+                    <div class="col">
+                        <p>Frame 8</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f8-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f8-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f8-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f9-final-score" style="margin-top:6px;">-</h1>
-                </div>
-                <div class="col">
-                    <p>Frame 10</p>
-                    <div class="row">
-                        <div class="col-1"><p class="p2" id="f10-score-1">-</p></div>
-                        <div class="col-2"><p class="p2" id="f10-score-2">-</p></div>
-                        <div class="col-3"><p class="p2" id="f10-score-3">-</p></div>
+                    <div class="col">
+                        <p>Frame 9</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f9-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f9-score-2">-</p></div>
+                        </div>
+                        <h1 class="final" id="f9-final-score" style="margin-top:6px;">-</h1>
                     </div>
-                    <h1 class="final" id="f10-final-score" style="margin-top:6px;">-</h1>
+                    <div class="col">
+                        <p>Frame 10</p>
+                        <div class="row">
+                            <div class="col-1"><p class="p2" id="f10-score-1">-</p></div>
+                            <div class="col-2"><p class="p2" id="f10-score-2">-</p></div>
+                            <div class="col-3"><p class="p2" id="f10-score-3">-</p></div>
+                        </div>
+                        <h1 class="final" id="f10-final-score" style="margin-top:6px;">-</h1>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
@@ -272,23 +348,84 @@
     <script>
 
         let frameIndex = 1;
-
+        let _frameName = "r-frame-1";
+        
         function createNewGame() {
             frameIndex++;
-            console.log(frameIndex);
-            const div = document.getElementById('r-frame-1');
-            const clone = div.cloneNode(true);
-            clone.id = "r-frame-" + frameIndex;
-            document.getElementById('ctn-frames').appendChild(clone);
 
-            clearElements();
+            let frameName = $("#txt-game-name").val();
+            _frameName = frameName;
+            console.log(_frameName);
 
-            isEndGame = false;
-            resetGame()
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Post", "Games")",
+                data:
+                {
+                    'name': frameName
+                },
+                success: function(data, status, xhr) {
+                    console.log('data: ', data);
+                    _frameName = data.id;
+                    const div = document.getElementById('r-frame-1');
+                    const clone = div.cloneNode(true);
+                    clone.id = _frameName;
+                    document.getElementById('ctn-frames').appendChild(clone);
+                    clearElements();
+                    isEndGame = false;
+                    resetGame();
+
+                    setGameLabels(data.name);
+                }
+            });
+        }
+
+        function setGameLabels(newGameName) {
+            let frameParent = document.getElementById(_frameName);
+            frameParent.querySelector("#hdr-game-1").innerHTML = newGameName;
+        }
+
+        function editGame(){
+             var name = $("#txt-edit-name").val();
+
+             $.ajax({
+                type: "PUT",
+                url: "@Url.Action("Put", "Games")",
+                data:
+                {
+                    'id': _frameName, 
+                    'name': name
+                },
+                success: function(data, status, xhr) {
+                    setGameLabels(data.name);
+                }
+            });
+        }
+
+
+         function deleteGame(){
+             var name = $("#txt-edit-name").val();
+
+             $.ajax({
+                type: "DELETE",
+                url: "@Url.Action("Delete", "Games")",
+                data:
+                {
+                    'input': _frameName
+                },
+                success: function(data, status, xhr) {
+                }
+            });
+        }
+
+        function setEditGame(){
+            let frameParent = document.getElementById(_frameName);
+            let name = frameParent.querySelector("#hdr-game-1").innerHTML;
+            $("#txt-edit-name").val(name);
         }
 
         function clearElements() {
-            let newFrameParent = document.getElementById("r-frame-" + frameIndex);
+            let newFrameParent = document.getElementById(_frameName);
             let newFrameChildrenScore = newFrameParent.querySelectorAll(".p2");
             for (let i = 0; i < newFrameChildrenScore.length; i++) {
                 newFrameChildrenScore[i].innerHTML = "-";
@@ -331,7 +468,7 @@
 
         function pinsDown(pins) {
             if (isEndGame) return;
-            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            let frameParent = document.getElementById(_frameName);
             mainShotIndex++;
 
             if (frame == 10) {
@@ -453,7 +590,7 @@
         function getSpareScore(nextScore) {
             if (!isSpare) return;
             let spareScore = (previousScore + 10 + nextScore);
-            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            let frameParent = document.getElementById(_frameName);
             frameParent.querySelector("#f" + (frame - 1) + "-final-score").innerHTML = spareScore;
             previousScore = spareScore;
             isSpare = false;
@@ -461,7 +598,7 @@
 
         function getNormalScore() {
             let normalScore = (previousScore + firstShot + secondShot);
-            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            let frameParent = document.getElementById(_frameName);
             frameParent.querySelector("#f" + (frame) + "-final-score").innerHTML = normalScore;
             previousScore = normalScore;
         }
@@ -470,7 +607,7 @@
 
             if (!isStrike) return;
             let strikeScore = (previousScore + 10 + firstShot + secondShot);
-            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            let frameParent = document.getElementById(_frameName);
             frameParent.querySelector("#f" + (frame - frameOffset) + "-final-score").innerHTML = strikeScore;
             previousScore = strikeScore;
             isStrike = false;
@@ -478,7 +615,7 @@
 
         function getAllStrikeScores() {
             if (strikeIndex > 2) {
-                let frameParent = document.getElementById("r-frame-" + frameIndex);
+                let frameParent = document.getElementById(_frameName);
                 let allStrikeScore = (previousScore + 10 + firstShot + firstShot);
                 frameParent.querySelector("#f" + (frame - 3) + "-final-score").innerHTML = allStrikeScore;
                 previousScore = allStrikeScore;
@@ -488,7 +625,7 @@
 
         function processLastFrame(pins) {
             if (isEndGame) return;
-            let frameParent = document.getElementById("r-frame-" + frameIndex);
+            let frameParent = document.getElementById(_frameName);
             if (shotIndex == 1) {
                 firstShot = pins;
                 if (pins == 10) {

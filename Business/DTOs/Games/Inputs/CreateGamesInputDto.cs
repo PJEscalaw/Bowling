@@ -1,6 +1,6 @@
 ﻿namespace Business.DTOs.Games.Inputs
 {
-    public class CreateGamesDto
+    public class CreateGamesInputDto
     {
         public string Name { get; set; }
     }

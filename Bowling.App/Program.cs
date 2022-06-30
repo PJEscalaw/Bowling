@@ -1,7 +1,12 @@
+using Facade;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient();
+builder.Services.AddFacade();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -21,5 +26,20 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Games}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+});
+
+
+
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Games}/{action=Index}/{id?}");
 
 app.Run();

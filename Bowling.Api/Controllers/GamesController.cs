@@ -7,19 +7,19 @@ namespace Bowling.Api.Controllers
 {
     public class GamesController : BaseController
     {
-        [HttpPost("Games")]
-        public async Task<IActionResult> CreateGamesAsync(CreateGamesDto createGamesDto)
+        [HttpPost]
+        public async Task<IActionResult> CreateGamesAsync(CreateGamesInputDto createGamesDto)
             => Ok(await Mediator.Send(new CreateGamesCommand { Dto = createGamesDto }));
 
-        [HttpPut("Games")]
-        public async Task<IActionResult> UpdateGamesAsync(UpdateGamesDto updateGamesDto)
+        [HttpPut]
+        public async Task<IActionResult> UpdateGamesAsync(UpdateGamesInputDto updateGamesDto)
             => Ok(await Mediator.Send(new UpdateGamesCommand { Dto = updateGamesDto }));
 
-        [HttpDelete("Games/{Id}")]
+        [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteGamesAsync(Guid Id)
             => Ok(await Mediator.Send(new DeleteGamesCommand { Id = Id }));
 
-        [HttpGet("Games/{Id}")]
+        [HttpGet("{Id}")]
         public async Task<IActionResult> GetGamesByIdAsync(Guid Id)
             => Ok(await Mediator.Send(new GetGamesByIdQuery { Id = Id }));
     }

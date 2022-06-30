@@ -1,20 +1,25 @@
 ﻿using Business.DTOs.Games.Inputs;
+using Business.DTOs.Games.Outputs;
 using Mapster;
 using MediatR;
 using Persistence.Repositories.Interfaces;
 
 namespace Business.Features.Games.Commands
 {
-    public class CreateGamesCommand : IRequest<Guid>, IRegister
+    public class CreateGamesCommand : IRequest<CreateGamesOutputDto>, IRegister
     {
-        public CreateGamesDto Dto { get; set; }
-        public void Register(TypeAdapterConfig config) => config.ForType<CreateGamesDto, Domain.Entities.Games>();
+        public CreateGamesInputDto Dto { get; set; }
+        public void Register(TypeAdapterConfig config)
+        {
+            config.ForType<CreateGamesInputDto, Domain.Entities.Games>();
+            config.ForType<Domain.Entities.Games, CreateGamesOutputDto>();
+        }
     }
-    public class CreateGamesCommandHandler : IRequestHandler<CreateGamesCommand, Guid>
+    public class CreateGamesCommandHandler : IRequestHandler<CreateGamesCommand, CreateGamesOutputDto>
     {
         private readonly IUnitOfWork _unitOfWork;
         public CreateGamesCommandHandler(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
-        public async Task<Guid> Handle(CreateGamesCommand request, CancellationToken cancellationToken)
+        public async Task<CreateGamesOutputDto> Handle(CreateGamesCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +28,7 @@ namespace Business.Features.Games.Commands
                 await _unitOfWork.Games.AddAsync(entity);
                 await _unitOfWork.CommitAsync();
 
-                return entity.Id;
+                return entity.Adapt<CreateGamesOutputDto>();
             }
             catch (Exception)
             {

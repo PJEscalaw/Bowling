@@ -13,21 +13,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{8E39E00B-3337-4DE0-9389-51CFD0159477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{6546CD0A-DFFF-43D1-BD7C-E15B021E6497}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{6546CD0A-DFFF-43D1-BD7C-E15B021E6497}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{EC28CBAA-891B-4D86-92BE-14792FE89A56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{EC28CBAA-891B-4D86-92BE-14792FE89A56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{ABB3BFBF-AFBF-49DE-B59C-9EF7D20EECAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{ABB3BFBF-AFBF-49DE-B59C-9EF7D20EECAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{3B8A1C6D-4D85-4CF4-A34A-FFF0D031245A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3B8A1C6D-4D85-4CF4-A34A-FFF0D031245A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Api", "Bowling.Api\Bowling.Api.csproj", "{A31E35BB-4FDF-4066-A680-2528307662FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bowling.Api", "Bowling.Api\Bowling.Api.csproj", "{A31E35BB-4FDF-4066-A680-2528307662FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.App", "Bowling.App\Bowling.App.csproj", "{D987E2CC-8F95-4417-A090-E680A2B12C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bowling.App", "Bowling.App\Bowling.App.csproj", "{D987E2CC-8F95-4417-A090-E680A2B12C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit", "Unit\Unit.csproj", "{7DCD81A2-C88C-4F68-92F3-A04F4A249C7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit", "Unit\Unit.csproj", "{7DCD81A2-C88C-4F68-92F3-A04F4A249C7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration", "Integration\Integration.csproj", "{B004668E-C3AA-4EDE-93AA-E00443B80354}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integration", "Integration\Integration.csproj", "{B004668E-C3AA-4EDE-93AA-E00443B80354}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade", "Facade\Facade.csproj", "{09EB97CF-A07A-4DB6-8744-9ABD303BD768}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{B004668E-C3AA-4EDE-93AA-E00443B80354}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B004668E-C3AA-4EDE-93AA-E00443B80354}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B004668E-C3AA-4EDE-93AA-E00443B80354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EB97CF-A07A-4DB6-8744-9ABD303BD768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EB97CF-A07A-4DB6-8744-9ABD303BD768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EB97CF-A07A-4DB6-8744-9ABD303BD768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EB97CF-A07A-4DB6-8744-9ABD303BD768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{D987E2CC-8F95-4417-A090-E680A2B12C52} = {2C1A251D-8885-4B63-98D4-79F0D273C836}
 		{7DCD81A2-C88C-4F68-92F3-A04F4A249C7A} = {9A2F82D1-9F8F-4043-8232-87539BFB2B09}
 		{B004668E-C3AA-4EDE-93AA-E00443B80354} = {9A2F82D1-9F8F-4043-8232-87539BFB2B09}
+		{09EB97CF-A07A-4DB6-8744-9ABD303BD768} = {1EB0B88D-D7FF-4B7F-9A3E-4705194CA7EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F8A79F5-FB0F-4E40-B6BB-8DC06419E6B9}
