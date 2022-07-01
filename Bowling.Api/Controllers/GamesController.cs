@@ -21,6 +21,10 @@ namespace Bowling.Api.Controllers
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetGamesByIdAsync(Guid Id)
-            => Ok(await Mediator.Send(new GetGamesByIdQuery { Id = Id }));
+            => Ok(await Mediator.Send(new GetGamesByIdQuery { Id = Id })); 
+
+        [HttpGet]
+        public async Task<IActionResult> GetGamesAsync()
+            => Ok(await Mediator.Send(new GetGamesQuery()));
     }
 }

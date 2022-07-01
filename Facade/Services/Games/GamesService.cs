@@ -32,6 +32,14 @@ namespace Facade.Services.Games
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<IEnumerable<GetGamesOutputDto>> GetGameAsync()
+        {
+            var result = await _client.GetAsync("api/Games");
+            var jsonResponse = await result.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<IEnumerable<GetGamesOutputDto>>(jsonResponse);
+        }
+
         public async Task<UpdateGamesOutputDto> UpdateGameAsync(UpdateGamesInputDto updateGamesDto)
         {
             var result = await _client.PutAsJsonAsync("api/Games", updateGamesDto);

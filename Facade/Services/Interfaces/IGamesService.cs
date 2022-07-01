@@ -7,6 +7,7 @@ namespace Facade.Services.Interfaces
     {
         Task<CreateGamesOutputDto> CreateGameAsync(CreateGamesInputDto createGamesDto);
         Task<bool> DeleteGameAsync(Guid id);
+        Task<IEnumerable<GetGamesOutputDto>> GetGameAsync();
         Task<UpdateGamesOutputDto> UpdateGameAsync(UpdateGamesInputDto updateGamesDto);
     }
 }
