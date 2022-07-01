@@ -11,26 +11,18 @@ namespace Bowling.App.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Post(CreateGamesInputDto input)
-        {
-            return Ok(await _gamesService.CreateGameAsync(input));
-        }
+            => Ok(await _gamesService.CreateGameAsync(input));
 
         [HttpPut]
         public async Task<IActionResult> Put(UpdateGamesInputDto input)
-        {
-            return Ok(await _gamesService.UpdateGameAsync(input));
-        }
+            => Ok(await _gamesService.UpdateGameAsync(input));
 
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid input)
-        {
-            return Ok(await _gamesService.DeleteGameAsync(input));
-        }
-        
+            => Ok(await _gamesService.DeleteGameAsync(input));
+
         [HttpGet]
         public async Task<IActionResult> Get()
-        {
-            return Ok(await _gamesService.GetGameAsync());
-        }
+            => Ok(await _gamesService.GetGameAsync());
     }
 }
