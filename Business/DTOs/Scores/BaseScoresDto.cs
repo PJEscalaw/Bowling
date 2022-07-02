@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities
+﻿namespace Business.DTOs.Scores
 {
-    public class Scores
+    public class BaseScoresDto
     {
         public Guid Id { get; set; }
         public Guid GameId { get; set; }

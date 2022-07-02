@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Aggregates\" />
-    <Folder Include="DTOs\Scores\" />
   </ItemGroup>
 
   <ItemGroup>
