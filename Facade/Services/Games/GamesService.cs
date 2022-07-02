@@ -9,7 +9,6 @@ namespace Facade.Services.Games
     public class GamesService : IGamesService
     {
         private readonly HttpClient _client;
-
         public GamesService(IHttpClientFactory httpClientFactory)
         {
             _client = httpClientFactory.CreateClient("bowling.api");
