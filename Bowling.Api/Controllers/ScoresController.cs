@@ -26,5 +26,9 @@ namespace Bowling.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetScoresAsync()
             => Ok(await Mediator.Send(new GetScoresQuery()));
+
+        [HttpGet("Games/{GameId}")]
+        public async Task<IActionResult> GetScoresByGameIdAsync(Guid GameId)
+            => Ok(await Mediator.Send(new GetScoresByGameIdQuery { GameId = GameId }));
     }
 }

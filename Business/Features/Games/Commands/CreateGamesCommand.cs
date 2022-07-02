@@ -1,4 +1,5 @@
-﻿using Business.DTOs.Games.Inputs;
+﻿using Business.Commons;
+using Business.DTOs.Games.Inputs;
 using Business.DTOs.Games.Outputs;
 using Mapster;
 using MediatR;
@@ -23,6 +24,9 @@ namespace Business.Features.Games.Commands
         {
             try
             {
+                var game = await _unitOfWork.Games.GetGamesByNameAsync(request.Dto.Name, cancellationToken);
+                if (game is not null) throw new ResponseException($"{request.Dto.Name} already exists from the database.");
+
                 var entity = request.Dto.Adapt<Domain.Entities.Games>();
 
                 await _unitOfWork.Games.AddAsync(entity);

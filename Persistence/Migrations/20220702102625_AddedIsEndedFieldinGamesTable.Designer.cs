@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -10,9 +11,10 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BowlingDbContext))]
-    partial class BowlingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220702102625_AddedIsEndedFieldinGamesTable")]
+    partial class AddedIsEndedFieldinGamesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
@@ -54,9 +56,6 @@ namespace Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("PinsKnockedDown")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("RollIndex")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Score")

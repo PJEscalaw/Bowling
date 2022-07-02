@@ -212,7 +212,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <input class="form-control" id="txt-edit-name" type="text" autocomplete="off"/>
+                                <input class="form-control" id="txt-edit-name" type="text" autocomplete="off" />
                             </div>
                             <div class="modal-footer">
                                 <button id="modal-btn-edit" type="button" class="btn btn-primary" onclick="editGame(this);" data-dismiss="modal">Save changes</button>
@@ -249,13 +249,13 @@
             <div class="container" id="r-frame-1" data-id="" hidden>
                 <div class="row" id="row-game-name">
                     <div class="col-sm" style="text-align:left">
-                        <button  type="button" class="btn btn-info" id="btn-edit" data-toggle="modal" data-target="#editGameModalCenter" onclick="setEditGame(this);">Edit</button>
+                        <button type="button" class="btn btn-info" id="btn-edit" data-toggle="modal" data-target="#editGameModalCenter" onclick="setEditGame(this);">Edit</button>
                     </div>
                     <div class="col-lg-8">
                         <h4 id="hdr-game-1">Game 1</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
-                        <button  type="button" class="btn btn-danger" id="btn-delete" data-toggle="modal" data-target="#deleteGameModalCenter" onclick="setDeleteGame(this)">Delete</button>
+                        <button type="button" class="btn btn-danger" id="btn-delete" data-toggle="modal" data-target="#deleteGameModalCenter" onclick="setDeleteGame(this)">Delete</button>
                     </div>
                 </div>
 
@@ -351,32 +351,90 @@
 @section Scripts {
     <script>
         $(document).ready(function() {
-             $.ajax({
+            $.ajax({
                 type: "GET",
                 url: "@Url.Action("Get", "Games")",
                 success: function(data, status, xhr) {
                     console.log(data);
-                    for(let i = 0; i < data.length; i++) {
-                         const div = document.getElementById('r-frame-1');
-                         const clone = div.cloneNode(true);
-                         clone.id = data[i].id;
-                         document.getElementById('ctn-frames').appendChild(clone);
-                         setGameLabels(data[i].name, data[i].id);
-                         
-                         let frameParent = document.getElementById(data[i].id);
-                         frameParent.removeAttribute('hidden');
-                         frameParent.querySelector('#btn-delete').setAttribute('data-id', data[i].id);
-                         frameParent.querySelector('#btn-edit').setAttribute('data-id', data[i].id);
-                         $('#' + data[i].id).attr('data-id', data[i].id); // sets 
-                         $('#btn-delete').attr('data-id', data[i].id); // sets 
-                    } 
+                    for (let i = 0; i < data.length; i++) {
+                        const div = document.getElementById('r-frame-1');
+                        const clone = div.cloneNode(true);
+                        clone.id = data[i].id;
+                        document.getElementById('ctn-frames').appendChild(clone);
+                        setGameLabels(data[i].name, data[i].id);
+
+                        let frameParent = document.getElementById(data[i].id);
+                        frameParent.removeAttribute('hidden');
+                        frameParent.querySelector('#btn-delete').setAttribute('data-id', data[i].id);
+                        frameParent.querySelector('#btn-edit').setAttribute('data-id', data[i].id);
+                        $('#' + data[i].id).attr('data-id', data[i].id); // sets
+                        $('#btn-delete').attr('data-id', data[i].id); // sets
+
+                        if (data[i].isEnded == false){
+                            console.log("last game is not yet ended. setting id to _frameName.");
+                            _frameName = data[i].id;
+                            console.log(_frameName);
+                        }
+                    }
                 }
             });
         });
 
         let frameIndex = 1;
         let _frameName = "r-frame-1";
-        
+
+
+
+        function createScore(frame, isStrike, isSpare, pins, score, rollIndex){
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Post", "Scores")",
+                data:
+                {
+                    'GameId': _frameName,
+                    'Frame' : frame,
+                    'IsStrike' : isStrike,
+                    'IsSpare' : isSpare,
+                    'PinsKnockedDown' : pins,
+                    'RollIndex' : rollIndex,
+                    'Score' : score
+                },
+                success: function(data, status, xhr) {
+                   console.log(data);
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseText);
+                    console.log(error);
+                }
+            });
+        }
+
+        function endGame(){
+            console.log("HFJHASLEIJFLSIJFLESI");
+            let frameParent = document.getElementById(_frameName);
+            let name = frameParent.querySelector("#hdr-game-1").innerHTML;
+            var id = $(frameParent).attr("data-id");
+            console.log(id);
+
+             $.ajax({
+                type: "PUT",
+                url: "@Url.Action("Put", "Games")",
+                data:
+                {
+                    'id': id,
+                    'name': name,
+                    'IsEnded': true
+                },
+                success: function(data, status, xhr) {
+                    console.log('data: ', data);
+                   
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+
         function createNewGame() {
             frameIndex++;
 
@@ -410,6 +468,10 @@
                     $('#' + data.id).attr('data-id', data.id);
 
                     frameParent.removeAttribute('hidden');
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseText);
+                    console.log(error);
                 }
             });
         }
@@ -419,17 +481,17 @@
             frameParent.querySelector("#hdr-game-1").innerHTML = newGameName;
         }
 
-        function editGame(element){
+        function editGame(element) {
             var id = $(element).attr("data-id");
             console.log("game id " + id);
-             var name = $("#txt-edit-name").val();
+            var name = $("#txt-edit-name").val();
             console.log("game id " + name);
-             $.ajax({
+            $.ajax({
                 type: "PUT",
                 url: "@Url.Action("Put", "Games")",
                 data:
                 {
-                    'id': id, 
+                    'id': id,
                     'name': name
                 },
                 success: function(data, status, xhr) {
@@ -438,16 +500,15 @@
             });
         }
 
-
-         function deleteGame(element){
-             var id = $(element).attr("data-id");
-             var name = $("#txt-edit-name").val();
-             $.ajax({
+        function deleteGame(element) {
+            var id = $(element).attr("data-id");
+            var name = $("#txt-edit-name").val();
+            $.ajax({
                 type: "DELETE",
                 url: "@Url.Action("Delete", "Games")",
-                data: 
+                data:
                 {
-                    'input': id 
+                    'input': id
                 },
                 success: function(data, status, xhr) {
                     location.reload();
@@ -455,8 +516,7 @@
             });
         }
 
-        function setEditGame(element){
-
+        function setEditGame(element) {
             var i = $(element).attr("data-id");
             let frameParent = document.getElementById(i);
             let name = frameParent.querySelector("#hdr-game-1").innerHTML;
@@ -464,7 +524,7 @@
             $('#modal-btn-edit').attr('data-id', i);
         }
 
-        function setDeleteGame(element){
+        function setDeleteGame(element) {
             var i = $(element).attr("data-id");
             console.log(i);
             let frameParent = document.getElementById(i);
@@ -577,6 +637,7 @@
                     }
 
                     frameParent.querySelector("#f" + frame + "-score-1").innerHTML = pins;
+                    createScore(frame, false, false, pins, 0, 1);
                 }
 
             }
@@ -644,6 +705,7 @@
             frameParent.querySelector("#f" + (frame - 1) + "-final-score").innerHTML = spareScore;
             previousScore = spareScore;
             isSpare = false;
+            createScore(frame - 1, false, true, secondShot, spareScore, 2);
         }
 
         function getNormalScore() {
@@ -651,6 +713,8 @@
             let frameParent = document.getElementById(_frameName);
             frameParent.querySelector("#f" + (frame) + "-final-score").innerHTML = normalScore;
             previousScore = normalScore;
+            createScore(frame, false, false, secondShot, normalScore, 2);
+
         }
 
         function getStrikeScore(frameOffset) {
@@ -661,6 +725,7 @@
             frameParent.querySelector("#f" + (frame - frameOffset) + "-final-score").innerHTML = strikeScore;
             previousScore = strikeScore;
             isStrike = false;
+            createScore((frame - frameOffset), true, false, firstShot, strikeScore, 1);
         }
 
         function getAllStrikeScores() {
@@ -699,6 +764,7 @@
 
                     console.log(wasStrike);
                     frameParent.querySelector("#f" + frame + "-score-1").innerHTML = pins;
+                    createScore(frame, false, false, pins, 0, 1);
                     if (wasStrike) {
                         console.log("else 10th frame.");
                         previousScore = previousScore + 10;
@@ -743,7 +809,7 @@
                     }
                     if (isSpare) {
                         frameParent.querySelector("#f" + frame + "-score-2").innerHTML = "/";
-
+                        createScore(frame, false, true, secondShot, 0, 2);
                         showAll();
                         console.log("fhhefjaleijf");
                         mainShotIndex = 2;
@@ -752,6 +818,7 @@
                     else {
                         getNormalScore();
                         isEndGame = true;
+                        endGame();
                         showAll();
                     }
                 }
@@ -784,9 +851,11 @@
                     }
 
                     isEndGame = true;
+                    endGame();
                 }
 
                 isEndGame = true;
+                endGame();
             }
         }
     </script>

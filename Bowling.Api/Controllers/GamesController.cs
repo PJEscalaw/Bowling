@@ -16,12 +16,12 @@ namespace Bowling.Api.Controllers
             => Ok(await Mediator.Send(new UpdateGamesCommand { Dto = updateGamesDto }));
 
         [HttpDelete("{Id}")]
-        public async Task<IActionResult> DeleteGamesAsync(Guid Id)
-            => Ok(await Mediator.Send(new DeleteGamesCommand { Id = Id }));
+        public async Task<IActionResult> DeleteGamesAsync(Guid id)
+            => Ok(await Mediator.Send(new DeleteGamesCommand { Id = id }));
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetGamesByIdAsync(Guid Id)
-            => Ok(await Mediator.Send(new GetGamesByIdQuery { Id = Id })); 
+        public async Task<IActionResult> GetGamesByIdAsync(Guid id)
+            => Ok(await Mediator.Send(new GetGamesByIdQuery { Id = id })); 
 
         [HttpGet]
         public async Task<IActionResult> GetGamesAsync()
