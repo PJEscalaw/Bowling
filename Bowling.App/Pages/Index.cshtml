@@ -243,7 +243,7 @@
                     </div>
                 </div>
 
-                 <div class="modal fade" id="editScoreModalCenter" tabindex="-1" role="dialog" aria-labelledby="editScoreModalCenterTitle" aria-hidden="true" style="width: 200px;margin: auto;">
+                <div class="modal fade" id="editScoreModalCenter" tabindex="-1" role="dialog" aria-labelledby="editScoreModalCenterTitle" aria-hidden="true" style="width: 200px;margin: auto;">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -255,17 +255,17 @@
                             <div class="modal-body">
                                 <p id="edit-frame-label">Frame #</p>
                                 <div class="row">
-                                    <div class="col-6"  style="border-right: 1px solid">
-                                        <input type="text" class="form-control" style="width:60px; float:right;" maxlength="1"/>
+                                    <div class="col-6" style="border-right: 1px solid">
+                                        <input id="txt-roll-1" type="text" class="form-control" style="width:60px; float:right;" maxlength="1" />
                                     </div>
                                     <div class="col-6" style="border-left: 1px solid">
-                                        <input type="text" class="form-control" style="width:60px" maxlength="1"/>
+                                        <input id="txt-roll-2" type="text" class="form-control" style="width:60px" maxlength="1" />
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="modal-footer">
-                                <button id="modal-btn-edit-frame" type="button" class="btn btn-primary" data-dismiss="modal" data-id="">Save</button>
+                                <button id="modal-btn-edit-frame" type="button" class="btn btn-primary" data-dismiss="modal" data-id-1="" data-id-2="" data-id-3="" onclick="editFrameScore(this);">Save</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                             <div class="col-2"><p class="p2" id="f1-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f1-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-1" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-1" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 2</p>
@@ -306,7 +306,7 @@
                             <div class="col-2"><p class="p2" id="f2-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f2-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-2" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter"data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-2" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 3</p>
@@ -315,7 +315,7 @@
                             <div class="col-2"><p class="p2" id="f3-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f3-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-3" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-3" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 4</p>
@@ -324,7 +324,7 @@
                             <div class="col-2"><p class="p2" id="f4-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f4-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-4" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-4" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 5</p>
@@ -333,7 +333,7 @@
                             <div class="col-2"><p class="p2" id="f5-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f5-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-5" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-5" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 6</p>
@@ -342,7 +342,7 @@
                             <div class="col-2"><p class="p2" id="f6-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f6-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-6" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter"data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-6" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 7</p>
@@ -351,7 +351,7 @@
                             <div class="col-2"><p class="p2" id="f7-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f7-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-7" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-7" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 8</p>
@@ -360,7 +360,7 @@
                             <div class="col-2"><p class="p2" id="f8-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f8-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-8" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-8" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 9</p>
@@ -369,7 +369,7 @@
                             <div class="col-2"><p class="p2" id="f9-score-2">-</p></div>
                         </div>
                         <h1 class="final" id="f9-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-9" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden>Edit</button>
+                        <button id="btn-edit-frame-9" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                     <div class="col">
                         <p>Frame 10</p>
@@ -379,7 +379,7 @@
                             <div class="col-3"><p class="p2" id="f10-score-3">-</p></div>
                         </div>
                         <h1 class="final" id="f10-final-score" style="margin-top:6px;">-</h1>
-                        <button id="btn-edit-frame-10" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" data-id-3="" hidden>Edit</button>
+                        <button id="btn-edit-frame-10" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editScoreModalCenter" data-id-1="" data-id-2="" data-id-3="" hidden onclick="setEditFrameScore(this);">Edit</button>
                     </div>
                 </div>
             </div>
@@ -391,64 +391,118 @@
 @section Scripts {
     <script>
 
-    onLoad();
+        onLoad();
 
-        function onLoad(){
-           $(document).ready(function() {
-                    $.ajax({
-                        type: "GET",
-                        url: "@Url.Action("Get", "Games")",
-                        success: function(data, status, xhr) {
-                            console.log(data);
-                            for (let i = 0; i < data.length; i++) {
-                                const div = document.getElementById('r-frame-1');
-                                const clone = div.cloneNode(true);
-                                clone.id = data[i].id;
-                                document.getElementById('ctn-frames').appendChild(clone);
-                                setGameLabels(data[i].name, data[i].id);
+        function onLoad() {
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("Get", "Games")",
+                    success: function(data, status, xhr) {
+                        console.log(data);
+                        for (let i = 0; i < data.length; i++) {
+                            const div = document.getElementById('r-frame-1');
+                            const clone = div.cloneNode(true);
+                            clone.id = data[i].id;
+                            document.getElementById('ctn-frames').appendChild(clone);
+                            setGameLabels(data[i].name, data[i].id);
 
-                                let frameParent = document.getElementById(data[i].id);
-                                frameParent.removeAttribute('hidden');
-                                frameParent.querySelector('#btn-delete').setAttribute('data-id', data[i].id);
-                                frameParent.querySelector('#btn-edit').setAttribute('data-id', data[i].id);
-                                $('#' + data[i].id).attr('data-id', data[i].id); // sets
-                                $('#btn-delete').attr('data-id', data[i].id); // sets
+                            let frameParent = document.getElementById(data[i].id);
+                            frameParent.removeAttribute('hidden');
+                            frameParent.querySelector('#btn-delete').setAttribute('data-id', data[i].id);
+                            frameParent.querySelector('#btn-edit').setAttribute('data-id', data[i].id);
+                            $('#' + data[i].id).attr('data-id', data[i].id); // sets
+                            $('#btn-delete').attr('data-id', data[i].id); // sets
 
-                                if (data[i].isEnded == false){
-                                    console.log("last game is not yet ended. setting id to _frameName.");
-                                    _frameName = data[i].id;
-                                    console.log(_frameName);
-                                }
-
-                                //loads scores of a game.
-                               getScores(data[i].id);
+                            if (data[i].isEnded == false) {
+                                console.log("last game is not yet ended. setting id to _frameName.");
+                                _frameName = data[i].id;
+                                console.log(_frameName);
+                                isEndGame = false;
                             }
+                            else{
+                                isEndGame = true;
+                            }
+
+                            //loads scores of a game.
+                            getScores(data[i].id);
                         }
-                    });
+                    }
                 });
+            });
         }
 
-     
         let frameIndex = 1;
         let _frameName = "r-frame-1";
 
+        function editFrameScore(element) {
+            var id1 = $(element).attr("data-id-1");
+            var id2 = $(element).attr("data-id-2");
+            var id3 = $(element).attr("data-id-3");
+
+            var roll1 = $("#txt-roll-1").val();
+            var roll2 = $("#txt-roll-2").val();
+
+
+
+
+
+            // $.ajax({
+            //    type: "PUT",
+            //    url: "@Url.Action("Put", "Scores")",
+            //    data:
+            //    {
+            //        'Id': id,
+            //        'PinsKnockedDown': pins,
+            //        'IsSpare': isSpare,
+            //        'IsStrike': isStrike,
+            //        'Score' : score
+            //    },
+            //    success: function(data, status, xhr) {
+            //        console.log('data: ', data);
+
+            //    },
+            //    error: function(xhr, status, error) {
+            //        console.log(error);
+            //    }
+            //});
+        }
+
+        function setEditFrameScore(element) {
+            var id1 = $(element).attr("data-id-1");
+            var id2 = $(element).attr("data-id-2");
+            var id3 = $(element).attr("data-id-3");
+            var fr = $(element).attr("data-frame");
+
+            $('#modal-btn-edit-frame').attr('data-id-1', id1);
+            $('#modal-btn-edit-frame').attr('data-id-2', id2);
+            $('#modal-btn-edit-frame').attr('data-id-3', id3);
+
+            let frameParent = document.getElementById(_frameName);
+            let roll1 = frameParent.querySelector("#f" + fr + "-score-1").innerHTML;
+            let roll2 = frameParent.querySelector("#f" + fr + "-score-2").innerHTML;
+            
+            $("#txt-roll-1").val(roll1);
+            $("#txt-roll-2").val(roll2);
+        }
+
         function getScores(gameId) {
-             $.ajax({
+            $.ajax({
                 type: "GET",
                 url: "Games",
-                data: {'gameId' : gameId},
+                data: { 'gameId': gameId },
                 success: function(data, status, xhr) {
                     console.log(data);
 
                     let frameParent = document.getElementById(gameId);
-                    for(let i = 0; i < data.length; i++){
-                        if (data[i].isSpare == true){
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].isSpare == true) {
                             if (data[i].frame == 10 && data[i].rollIndex == 3) {
                                 frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = data[i].pinsKnockedDown;
-                            } 
-                           frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = "/";
+                            }
+                            frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = "/";
                         }
-                        else if (data[i].isStrike == true){
+                        else if (data[i].isStrike == true) {
                             frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = "X";
                         }
                         else {
@@ -456,11 +510,16 @@
                         }
 
                         frameParent.querySelector("#f" + (data[i].frame) + "-final-score").innerHTML = data[i].score;
-                        
-                        frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("data-id-" + data[i].rollIndex, data[i].id);
-                        frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).removeAttribute("hidden");
-                    }
 
+                        frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("data-id-" + data[i].rollIndex, data[i].id);
+                        frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("data-frame", data[i].frame);
+
+                        if (isEndGame == true)
+                            frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("hidden", null);
+                        else {
+                             frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).removeAttribute("hidden");
+                        }
+                    }
                 },
                 error: function(xhr, status, error) {
                     alert(xhr.responseText);
@@ -469,7 +528,7 @@
             });
         }
 
-        function deleteScores(gameId){
+        function deleteScores(gameId) {
             $.ajax({
                 type: "DELETE",
                 url: "Games",
@@ -482,25 +541,26 @@
             });
         }
 
-        function createScore(frame, isStrike, isSpare, pins, score, rollIndex){
+        function createScore(frame, isStrike, isSpare, pins, score, rollIndex) {
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("Post", "Scores")",
                 data:
                 {
                     'GameId': _frameName,
-                    'Frame' : frame,
-                    'IsStrike' : isStrike,
-                    'IsSpare' : isSpare,
-                    'PinsKnockedDown' : pins,
-                    'RollIndex' : rollIndex,
-                    'Score' : score
+                    'Frame': frame,
+                    'IsStrike': isStrike,
+                    'IsSpare': isSpare,
+                    'PinsKnockedDown': pins,
+                    'RollIndex': rollIndex,
+                    'Score': score
                 },
                 success: function(data, status, xhr) {
-                   console.log(data);
-                   let frameParent = document.getElementById(_frameName);
-                   frameParent.querySelector("#btn-edit-frame-" + frame).removeAttribute("hidden");
-                   frameParent.querySelector("#btn-edit-frame-" + frame).setAttribute("data-id-" + data.rollIndex, data.id);
+                    console.log(data);
+                    let frameParent = document.getElementById(_frameName);
+                    frameParent.querySelector("#btn-edit-frame-" + frame).removeAttribute("hidden");
+                    frameParent.querySelector("#btn-edit-frame-" + frame).setAttribute("data-id-" + data.rollIndex, data.id);
+                    frameParent.querySelector("#btn-edit-frame-" + frame).setAttribute("data-frame", data.frame);
                 },
                 error: function(xhr, status, error) {
                     alert(xhr.responseText);
@@ -509,14 +569,14 @@
             });
         }
 
-        function endGame(){
+        function endGame() {
             console.log("HFJHASLEIJFLSIJFLESI");
             let frameParent = document.getElementById(_frameName);
             let name = frameParent.querySelector("#hdr-game-1").innerHTML;
             var id = $(frameParent).attr("data-id");
             console.log(id);
 
-             $.ajax({
+            $.ajax({
                 type: "PUT",
                 url: "@Url.Action("Put", "Games")",
                 data:
@@ -527,12 +587,17 @@
                 },
                 success: function(data, status, xhr) {
                     console.log('data: ', data);
-                   
+                     for(let i = 1; i < 11; i++) {
+                         console.log("#btn-edit-frame-" + i);
+                           frameParent.querySelector("#btn-edit-frame-" + i).style.display = "none";
+                     }
                 },
                 error: function(xhr, status, error) {
                     console.log(error);
                 }
             });
+
+           
         }
 
         function createNewGame() {
@@ -676,7 +741,7 @@
         let isSpare = false;
         let wasSpare = false;
         let previousScore = 0;
-        let isEndGame = false;
+        let isEndGame = true;
 
 
         function pinsDown(pins) {
@@ -831,7 +896,7 @@
             let frameParent = document.getElementById(_frameName);
             frameParent.querySelector("#f" + (frame) + "-final-score").innerHTML = normalScore;
             previousScore = normalScore;
-            
+
             let ii = 2;
             if (mainShotIndex == 3) {
                 ii = 3;
@@ -981,7 +1046,7 @@
                         frame++;
                         getSpareScore(pins);
                     }
-                    else{
+                    else {
                         secondShot = pins;
                         getNormalScore();
                     }
