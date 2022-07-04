@@ -9,5 +9,6 @@ namespace Persistence.Repositories.Interfaces
         Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         void Delete(TEntity entity);
+        void DeleteList(IEnumerable<TEntity> entity);
     }
 }

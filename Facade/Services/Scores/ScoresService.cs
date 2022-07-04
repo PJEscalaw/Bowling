@@ -23,6 +23,14 @@ namespace Facade.Services.Scores
             return JsonConvert.DeserializeObject<CreateScoresOutputDto>(jsonResponse);
         }
 
+        public async Task<bool> DeleteScoresByGameIdAsync(Guid gameId)
+        {
+            var deleteUrl = $"api/Scores/Games/{gameId}";
+            var result = await _client.DeleteAsync(deleteUrl);
+
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<bool> DeleteScoresAsync(Guid id)
         {
             var deleteUrl = $"api/Scores/{id}";
@@ -37,6 +45,14 @@ namespace Facade.Services.Scores
             var jsonResponse = await result.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<IEnumerable<GetScoresOutputDto>>(jsonResponse);
+        }
+
+        public async Task<IEnumerable<GetScoresByGameIdOutputDto>> GetScoresByGameIdAsync(Guid gameId)
+        {
+            var result = await _client.GetAsync($"api/Scores/Games/{gameId}");
+            var jsonResponse = await result.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<IEnumerable<GetScoresByGameIdOutputDto>>(jsonResponse);
         }
 
         public async Task<UpdateScoresOutputDto> UpdateScoresAsync(UpdateScoresInputDto updateScoresDto)

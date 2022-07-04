@@ -17,7 +17,11 @@ namespace Bowling.Api.Controllers
 
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteScoresAsync(Guid Id)
-            => Ok(await Mediator.Send(new DeleteScoresCommand { Id = Id }));
+            => Ok(await Mediator.Send(new DeleteScoresCommand { Id = Id })); 
+        
+        [HttpDelete("Games/{GameId}")]
+        public async Task<IActionResult> DeleteScoresByGameIdAsync(Guid gameId)
+            => Ok(await Mediator.Send(new DeleteScoresByGameIdCommand { GameId = gameId }));
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetScoresByIdAsync(Guid Id)

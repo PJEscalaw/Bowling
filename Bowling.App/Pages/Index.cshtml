@@ -350,40 +350,94 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-                url: "@Url.Action("Get", "Games")",
-                success: function(data, status, xhr) {
-                    console.log(data);
-                    for (let i = 0; i < data.length; i++) {
-                        const div = document.getElementById('r-frame-1');
-                        const clone = div.cloneNode(true);
-                        clone.id = data[i].id;
-                        document.getElementById('ctn-frames').appendChild(clone);
-                        setGameLabels(data[i].name, data[i].id);
 
-                        let frameParent = document.getElementById(data[i].id);
-                        frameParent.removeAttribute('hidden');
-                        frameParent.querySelector('#btn-delete').setAttribute('data-id', data[i].id);
-                        frameParent.querySelector('#btn-edit').setAttribute('data-id', data[i].id);
-                        $('#' + data[i].id).attr('data-id', data[i].id); // sets
-                        $('#btn-delete').attr('data-id', data[i].id); // sets
+    onLoad();
 
-                        if (data[i].isEnded == false){
-                            console.log("last game is not yet ended. setting id to _frameName.");
-                            _frameName = data[i].id;
-                            console.log(_frameName);
+        function onLoad(){
+           $(document).ready(function() {
+                    $.ajax({
+                        type: "GET",
+                        url: "@Url.Action("Get", "Games")",
+                        success: function(data, status, xhr) {
+                            console.log(data);
+                            for (let i = 0; i < data.length; i++) {
+                                const div = document.getElementById('r-frame-1');
+                                const clone = div.cloneNode(true);
+                                clone.id = data[i].id;
+                                document.getElementById('ctn-frames').appendChild(clone);
+                                setGameLabels(data[i].name, data[i].id);
+
+                                let frameParent = document.getElementById(data[i].id);
+                                frameParent.removeAttribute('hidden');
+                                frameParent.querySelector('#btn-delete').setAttribute('data-id', data[i].id);
+                                frameParent.querySelector('#btn-edit').setAttribute('data-id', data[i].id);
+                                $('#' + data[i].id).attr('data-id', data[i].id); // sets
+                                $('#btn-delete').attr('data-id', data[i].id); // sets
+
+                                if (data[i].isEnded == false){
+                                    console.log("last game is not yet ended. setting id to _frameName.");
+                                    _frameName = data[i].id;
+                                    console.log(_frameName);
+                                }
+
+                                //loads scores of a game.
+                               getScores(data[i].id);
+                            }
                         }
-                    }
-                }
-            });
-        });
+                    });
+                });
+        }
 
+     
         let frameIndex = 1;
         let _frameName = "r-frame-1";
 
+        function getScores(gameId) {
+             $.ajax({
+                type: "GET",
+                url: "Games",
+                data: {'gameId' : gameId},
+                success: function(data, status, xhr) {
+                    console.log(data);
 
+                    let frameParent = document.getElementById(gameId);
+                    for(let i = 0; i < data.length; i++){
+                        if (data[i].isSpare == true){
+                            if (data[i].frame == 10 && data[i].rollIndex == 3) {
+                                frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = data[i].pinsKnockedDown;
+                            } 
+                           frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = "/";
+                        }
+                        else if (data[i].isStrike == true){
+                            frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = "X";
+                        }
+                        else {
+                            frameParent.querySelector("#f" + data[i].frame + "-score-" + data[i].rollIndex).innerHTML = data[i].pinsKnockedDown;
+                        }
+
+                        frameParent.querySelector("#f" + (data[i].frame) + "-final-score").innerHTML = data[i].score;
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseText);
+                    console.log(error);
+                }
+            });
+        }
+
+        function deleteScores(gameId){
+            $.ajax({
+                type: "DELETE",
+                url: "Games",
+                data:
+                {
+                    'gameId': gameId
+                },
+                success: function(data, status, xhr) {
+                }
+            });
+        }
 
         function createScore(frame, isStrike, isSpare, pins, score, rollIndex){
             $.ajax({
@@ -514,6 +568,9 @@
                     location.reload();
                 }
             });
+
+            console.log(id);
+            deleteScores(id);
         }
 
         function setEditGame(element) {
@@ -705,7 +762,22 @@
             frameParent.querySelector("#f" + (frame - 1) + "-final-score").innerHTML = spareScore;
             previousScore = spareScore;
             isSpare = false;
-            createScore(frame - 1, false, true, secondShot, spareScore, 2);
+
+            let ii = 2;
+            let spare = true;
+            if (mainShotIndex == 3) {
+                ii = 3;
+                if (wasStrike == true) {
+                    ii = 2
+                    spare = true;
+                }
+                else {
+                    spare = false;
+                }
+            }
+
+            createScore(frame - 1, false, spare, secondShot, spareScore, ii);
+
         }
 
         function getNormalScore() {
@@ -713,11 +785,20 @@
             let frameParent = document.getElementById(_frameName);
             frameParent.querySelector("#f" + (frame) + "-final-score").innerHTML = normalScore;
             previousScore = normalScore;
-            createScore(frame, false, false, secondShot, normalScore, 2);
+            
+            let ii = 2;
+            if (mainShotIndex == 3) {
+                ii = 3;
+            }
+            createScore(frame, false, false, secondShot, normalScore, ii);
 
         }
 
         function getStrikeScore(frameOffset) {
+
+            if (frameOffset == 0) {
+                console.log("frameoffseee");
+            }
 
             if (!isStrike) return;
             let strikeScore = (previousScore + 10 + firstShot + secondShot);
@@ -725,7 +806,14 @@
             frameParent.querySelector("#f" + (frame - frameOffset) + "-final-score").innerHTML = strikeScore;
             previousScore = strikeScore;
             isStrike = false;
-            createScore((frame - frameOffset), true, false, firstShot, strikeScore, 1);
+
+            if ((frame - frameOffset) != 10)
+                createScore((frame - frameOffset), true, false, firstShot, strikeScore, 2);
+            else {
+                createScore((frame - frameOffset), true, false, firstShot, 0, 1);
+                createScore((frame - frameOffset), true, false, firstShot, 0, 2);
+                createScore((frame - frameOffset), true, false, firstShot, strikeScore, 3);
+            }
         }
 
         function getAllStrikeScores() {
@@ -792,7 +880,6 @@
 
                     if (mainShotIndex == 3) {
                         getStrikeScore(1);
-
                         mainShotIndex = 2;
                     }
 
@@ -804,7 +891,6 @@
                     if (mainShotIndex == 3 && wasStrike) {
                         isStrike = true;
                         getStrikeScore(1);
-
                         mainShotIndex = 2;
                     }
                     if (isSpare) {
@@ -838,8 +924,8 @@
                     }
 
                     if (isSpare) {
-
                         getSpareScore(firstShot);
+                        getStrikeScore(0);
                     }
                 }
                 else {
@@ -848,6 +934,10 @@
                     if (isSpare) {
                         frame++;
                         getSpareScore(pins);
+                    }
+                    else{
+                        secondShot = pins;
+                        getNormalScore();
                     }
 
                     isEndGame = true;
