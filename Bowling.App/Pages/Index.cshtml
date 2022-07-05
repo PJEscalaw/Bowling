@@ -256,10 +256,10 @@
                                 <p id="edit-frame-label">Frame #</p>
                                 <div class="row">
                                     <div class="col-6" style="border-right: 1px solid">
-                                        <input id="txt-roll-1" type="text" class="form-control" style="width:60px; float:right;" maxlength="1" />
+                                        <input id="txt-roll-1" type="number" class="form-control" style="width:60px; float:right;" maxlength="1" />
                                     </div>
                                     <div class="col-6" style="border-left: 1px solid">
-                                        <input id="txt-roll-2" type="text" class="form-control" style="width:60px" maxlength="1" />
+                                        <input id="txt-roll-2" type="number" class="form-control" style="width:60px" maxlength="1" />
                                     </div>
                                 </div>
 
@@ -439,33 +439,62 @@
             var id1 = $(element).attr("data-id-1");
             var id2 = $(element).attr("data-id-2");
             var id3 = $(element).attr("data-id-3");
+            var fr = $(element).attr("data-frame");
+            var pScore = $(element).attr("data-prev-score");
+
+            console.log("data-prev-score" + pScore);
 
             var roll1 = $("#txt-roll-1").val();
             var roll2 = $("#txt-roll-2").val();
 
 
+            let strike = false;
+            let spare = false;
 
+            if (roll1 == 10) {
+                strike = true;
+                putScores(id1, fr, roll1, spare, strike, 1, previousScore);
+                return;
+            }
 
+            if (roll1 + roll2 == 10){
+                spare = true;
+                putScores(id2, fr, roll2, spare, strike, 2, previousScore);
+                return;
+            }
 
-            // $.ajax({
-            //    type: "PUT",
-            //    url: "@Url.Action("Put", "Scores")",
-            //    data:
-            //    {
-            //        'Id': id,
-            //        'PinsKnockedDown': pins,
-            //        'IsSpare': isSpare,
-            //        'IsStrike': isStrike,
-            //        'Score' : score
-            //    },
-            //    success: function(data, status, xhr) {
-            //        console.log('data: ', data);
+            let score = (+(roll1) + +(roll2));
+            score = +(pScore) + score;
 
-            //    },
-            //    error: function(xhr, status, error) {
-            //        console.log(error);
-            //    }
-            //});
+            putScores(id1, fr, roll1, spare, strike, 1, 0);
+            putScores(id2, fr, roll2, spare, strike, 2, score);
+        }
+
+        function putScores(id, fr, roll, spare, strike, rollIndex, score){
+             $.ajax({
+                type: "PUT",
+                url: "@Url.Action("Put", "Scores")",
+                data:
+                {
+                    'Id': id,
+                    'GameId': _frameName,
+                    'Frame': fr,
+                    'PinsKnockedDown': roll,
+                    'IsSpare': spare,
+                    'IsStrike': strike,
+                    'RollIndex': rollIndex,
+                    'Score' : score
+                },
+                success: function(data, status, xhr) {
+                    let frameParent = document.getElementById(_frameName);
+                    frameParent.querySelector("#f" + data.frame + "-score-" + data.rollIndex).innerHTML = data.pinsKnockedDown;
+                    if (data.score != 0)
+                        frameParent.querySelector("#f" + (data.frame) + "-final-score").innerHTML = data.score;
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
         }
 
         function setEditFrameScore(element) {
@@ -477,11 +506,25 @@
             $('#modal-btn-edit-frame').attr('data-id-1', id1);
             $('#modal-btn-edit-frame').attr('data-id-2', id2);
             $('#modal-btn-edit-frame').attr('data-id-3', id3);
+            $('#modal-btn-edit-frame').attr('data-frame', fr);
 
             let frameParent = document.getElementById(_frameName);
             let roll1 = frameParent.querySelector("#f" + fr + "-score-1").innerHTML;
             let roll2 = frameParent.querySelector("#f" + fr + "-score-2").innerHTML;
-            
+
+            let nFr = 1;
+            if (fr == 1){
+                nFr = 1;
+            }
+            else{
+                nFr = (fr - 1);
+            }
+                
+            console.log("new frame number " + nFr);
+
+            let pScore = frameParent.querySelector("#f" + nFr + "-final-score").innerHTML;
+            $('#modal-btn-edit-frame').attr('data-prev-score', pScore);
+
             $("#txt-roll-1").val(roll1);
             $("#txt-roll-2").val(roll2);
         }
@@ -514,8 +557,12 @@
                         frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("data-id-" + data[i].rollIndex, data[i].id);
                         frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("data-frame", data[i].frame);
 
+                        frame = +(data[i].frame) + 1;
+                        previousScore = data[i].score;
+                        console.log("previous score -- " + previousScore);
+
                         if (isEndGame == true)
-                            frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).setAttribute("hidden", null);
+                            frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).style.display = "none";
                         else {
                              frameParent.querySelector("#btn-edit-frame-" + (data[i].frame)).removeAttribute("hidden");
                         }
